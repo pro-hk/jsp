@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String user_ID= request.getParameter("user_id");
+	String user_PW = request.getParameter("user_pw");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%= user_ID %><br>
+	<%= user_PW %><br>
+	${param.user_id }<br>
+	${param.user_pw }	
+	${param.user_id == "prohk"}<br>
+	${param.user_pw == 1234 }	
+</body>
+</html>

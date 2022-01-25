@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cookie popup</title>
+</head>
+<body>
+	<%
+		String popupOn = "on";
+	%>
+	
+	<div id="popup">
+		<h2>Notice</h2>
+		<div class="contents">
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+			<p>공지사항입니다.</p>
+		</div>
+	</div>
+</body>
+</html>

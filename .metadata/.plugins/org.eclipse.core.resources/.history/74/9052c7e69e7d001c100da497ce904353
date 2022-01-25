@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>ID 저장해두기</h1>
+	<div>
+	<label>
+		<span>아이디</span><input type="text" name="user_id" value="loginID" placeholder="아이디를 입력하세요.">
+		<input type="checkbox" name="id_check" value="yes" checked>
+	</label>
+	<label><span>패스워드</span><input type="password" name="user_pw" placeholder="아이디를 입력하세요.">	
+	</label>
+	</div>
+</body>
+</html>

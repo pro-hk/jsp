@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;chap06/src/main/webapp/express_language_01.jsp&apos; to &apos;expression_language_01.jsp&apos;" description="Rename resource &apos;express_language_01.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/express_language_01.jsp" name="expression_language_01.jsp" stamp="1643091511531" updateReferences="true"/>
+</session>
