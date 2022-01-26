@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>request info</title>
+</head>
+<body>
+	<!-- out, request, response -->
+	<ul>
+		<li>컨텍스트 패스 : <%=request.getContextPath() %></li>
+		<li>요청방식 : <%=request.getMethod()() %></li>
+		<li>컨텍스트 패스 : <%=request.getContextPath() %></li>
+		<li>컨텍스트 패스 : <%=request.getContextPath() %></li>
+		<li>컨텍스트 패스 : <%=request.getContextPath() %></li>
+	</ul>
+</body>
+</html>

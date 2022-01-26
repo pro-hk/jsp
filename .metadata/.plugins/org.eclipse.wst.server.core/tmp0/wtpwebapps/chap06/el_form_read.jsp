@@ -3,6 +3,7 @@
 <%
 	String user_ID= request.getParameter("user_id");
 	String user_PW = request.getParameter("user_pw");
+	//String favorites[] = request.get
 %>
 <!DOCTYPE html>
 <html>

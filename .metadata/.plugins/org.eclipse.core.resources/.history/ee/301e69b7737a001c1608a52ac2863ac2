@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Params</title>
+</head>
+<body>
+	<form>
+		<div><label>아이디 : <input type="text" name ="user_id" placeholder="아이디를 입력하세요."></label></div>
+		<div><label>나이 : <input type="text" name ="user_age" placeholder="나이를 입력하세요."></label></div>
+	</form>
+</body>
+</html>

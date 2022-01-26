@@ -1,6 +1,0 @@
-package chap06;
-
-public class MemberDto {
-	private String name;
-	private String id;
-}

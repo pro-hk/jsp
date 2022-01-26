@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<% 
+	request.setCharacterEncoding("utf-8");
+	response.setContentType("text/html; charset=utf-8");
+	
+	String user_id = request.getParameter("user_id");
+	String user_pw = request.getParameter("user_pw");
+	String user_name = request.getParameter("user_name");
+	String user_email = request.getParameter("user_email");
+	String user_phone = "";
+	String user_phone_first = request.getParameter("user_phone_first");
+	String user_phone_middle = request.getParameter("user_phone_middle");
+	String user_phone_last = request.getParameter("user_phone_last");
+	user_phone = user_phone_first + user_phone_middle + user_phone_last;
+	String zipcode = request.getParameter("zipcode");
+%>

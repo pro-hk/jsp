@@ -1,0 +1,109 @@
+package com.prohk.chap02;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Gugudan")
+public class Gugudan extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public Gugudan() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String dan = request.getParameter("dan");
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<table border='1'>");
+			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+			for (int i = 1; i < 10; i++) {
+				out.println("<tbody>");
+				out.println("<tr><td>" + dan + " X " + i + " = " + dan*i + "</td></tr>");
+				out.println("</tbody>");
+			}
+			break;
+//		case "3":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 3 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "4":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 4 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "5":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 5 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "6":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 6 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "7":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 7 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "8":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 8 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+//		case "9":
+//			out.println("<thead><tr><th>" + dan + "단</th></tr></thead>");
+//			for (int i = 1; i < 10; i++) {
+//				out.println("<tbody>");
+//				out.println("<tr><td>" + dan + " X " + i + " = " + 9 * i + "</td></tr>");
+//				out.println("</tbody>");
+//			}
+//			break;
+		out.println("</table>");
+		out.println("<a href='javascript:history.back();'>돌아가기</a>");
+		out.println("</body>");
+		out.println("</html>");
+//		<table>
+//			<thead><tr><th>2단</th></tr></thead>
+//			<tbody>
+//				<tr><td> 2 X 1 = 2 </td></tr>
+//			</tbody>
+//		</table>
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
