@@ -61,7 +61,8 @@ ResultSet rs = null;
 							while (rs.next()) {
 							out.print("<tr>");
 								out.print("<td>"+rs.getString("no")+"</td>");
-								out.print("<td>"+rs.getString("id")+"</td>");
+								out.print("<td><a href='member_info.jsp?user_id="+rs.getString("id")+"'>"+rs.getString("id")+"</a></td>");
+								// a태그는 get방식
 								out.print("<td>"+rs.getString("name")+"</td>");
 								out.print("<td>"+rs.getString("email")+"</td>");
 								out.print("<td>"+rs.getString("phone")+"</td>");

@@ -8,8 +8,8 @@
       		<form method="post" action="join_process.jsp" id="join" class="form">
       			<table>
       				<colgroup>
-      					<col sytle="width:20%">
-      					<col sytle="width:80%">
+      					<col style="width:20%">
+      					<col style="width:80%">
       				</colgroup>
       				<tbody>
       					<tr>
