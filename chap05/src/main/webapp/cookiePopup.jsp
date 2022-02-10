@@ -2,7 +2,7 @@
 <% 
 	String popupOn = "on"; 
 
-	String oneDay = request.getParameter("oneDay");
+String oneDay = request.getParameter("oneDay");
 	System.out.println("클라이언트에서 ajax로 요청보낸 값 oneDay : "+oneDay);
 	System.out.println(popupOn);
 	if(oneDay!=null && oneDay.equals("off")) {

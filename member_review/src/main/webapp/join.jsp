@@ -14,7 +14,10 @@
       				<tbody>
       					<tr>
       						<th>아이디 <span class="required">*</span></th>
-      						<td><input type="text" name="user_id" id="user_id" placeholder="아이디를 입력하세요."></td>
+      						<td>
+      						<input type="text" name="user_id" id="user_id" style="width:calc(100% - 100px)" placeholder="아이디를 입력하세요." >
+      						<button class="btn btnIdCheck" id="btnIdCheck">ID중복체크</button>
+      						</td>
       					</tr>
       					<tr>
       						<th>비밀번호 <span class="required">*</span></th>
@@ -72,9 +75,60 @@
       </div>
     </main>
     <script>
+    	let idCheck = false;
+    	const korean = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
+    	const email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		//데이터 보내기
+		//1. form을 통해서 보내기
+		//2. a태그(href)로 보내기
+		//3. ajax로 보내기      		
+		$("#btnIdCheck").on("click",function(){
+			// e.preventDefault();
+			const user_id = $("#user_id").val();
+			if(user_id===""){
+				alert("아이디를 입력하세요.")
+				$("#user_id").focus();
+			} else if(korean.test($("#user_id").val())){
+				alert("ID에 한글을 쓸 수 없습니다.");
+				$("#user_id").val("");
+				$("#user_id").focus();
+			} else { 
+			$.ajax({
+				url:"id_check.jsp",
+				type:"post",
+				data:{"user_id":user_id},
+				success:function(res) {
+					//console.log(res);
+					if(res.count > 0) {
+						alert("사용할 수 없는 아이디입니다.");
+						$("#user_id").val("");
+						$("#user_id").focus();
+					} else {
+						const yes = confirm("사용가능한 아이디입니다. 사용하시겠습니까?");
+						if(yes) {
+							$("#user_id").attr("readonly",true);
+							$("#user_id").addClass("readonly");
+							idCheck = true;
+							$("#user_pw").focus();
+						} else {
+							$("#user_id").val("");
+							$("#user_id").focus();
+						}
+					}
+				}
+			});
+			}
+			return false;
+		});
+    
     	$(".btnConfirm").on("click",function(){
     		if($("#user_id").val()=="") {
     			alert("아이디를 입력하세요.");
+    			$("#user_id").focus();
+    			return false;
+    		} else if(korean.test($("#user_id").val())) {
+    			alert("ID에 한글을 쓸 수 없습니다.");
+    			$("#user_id").val("");
     			$("#user_id").focus();
     			return false;
     		} else if($("#user_pw").val()=="") {
@@ -99,6 +153,10 @@
     			alert("이메일을 입력하세요.");
     			$("#user_email").focus();
     			return false;
+    		} else if(!email.test($("#user_email").val())) {
+    			alert("이메일 형식에 맞게 입력해주세요.");
+    			$("#user_email").focus();
+    			return false;
     		} else if($("#user_phone_middle").val()=="") {
     			alert("전화번호를 입력하세요.");
     			$("#user_phone_middle").focus();
@@ -118,6 +176,9 @@
     		} else if($("#address02").val()=="") {
     			alert("주소를 입력하세요.");
     			$("#address02").focus();
+    			return false;
+    		} else if(!idCheck){
+    			alert("아이디를 체크해주세요");
     			return false;
     		}
     	});

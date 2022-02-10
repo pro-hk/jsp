@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String loggedName = (String)session.getAttribute("name");
+	String loggedId = (String)session.getAttribute("id");
+%>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -25,12 +29,21 @@
         </h1>
         <nav id="gnb">
           <h2 class="hidden">global navigation bar</h2>
+          <% if(loggedId==null) {%>
           <ul>
             <li><a href="./login.jsp">로그인</a></li>
             <li><a href="./join.jsp">회원가입</a></li>
             <li><a href="./list.jsp">회원관리</a></li>
             <li><a href="./board.jsp">게시판</a></li>
           </ul>
+          <% } else { %>
+          <ul>
+            <li><a href="./member_info.jsp?user_id=<%= loggedId %>"><%= loggedName %>님</a></li>
+            <li><a href="./logout.jsp">로그아웃</a></li>
+            <li><a href="./list.jsp">회원관리</a></li>
+            <li><a href="./board.jsp">게시판</a></li>
+          </ul>
+          <% } %>
         </nav>
       </div>
     </header>

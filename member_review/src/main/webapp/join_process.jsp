@@ -34,7 +34,6 @@
 	try {
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url,id,pw);  // 이후에 connection pool(미리 만들어서 순차적으로..)
-		System.out.print("db연결");
 		// sql을 sqldeveloper에서 테스트 후 가져와서 pstmt에서 ? 대응 값을 세팅 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_id);
