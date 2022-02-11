@@ -25,7 +25,7 @@ public class ReplyWriteProcessController extends HttpServlet {
 		ReplyBoardDao replyBoardDao = new ReplyBoardDao();
 		ReplyBoardDto replyBoardDto = new ReplyBoardDto();
 		
-		replyBoardDto.setSubject("[Re]"+request.getParameter("user_subject"));
+		replyBoardDto.setSubject("[re]"+request.getParameter("user_subject"));
 		replyBoardDto.setName(request.getParameter("user_name"));
 		replyBoardDto.setEmail(request.getParameter("user_email"));
 		replyBoardDto.setPassword(request.getParameter("user_pw"));

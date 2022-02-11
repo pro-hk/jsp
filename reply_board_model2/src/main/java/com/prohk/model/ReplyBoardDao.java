@@ -72,12 +72,18 @@ public class ReplyBoardDao {
 		return result;
 	}
 	
-	public ArrayList<ReplyBoardDto> getAllList() {
+	public ArrayList<ReplyBoardDto> getAllList(int start, int end) {
 		ArrayList<ReplyBoardDto> boardList = new ArrayList<>();
 		try {
 			getConnection();
-			String sql = "select * from reply_board order by regroup desc, relevel asc";
+//			String sql = "select * from reply_board order by regroup desc, relevel asc";
+			String sql = "select * from "
+					+ "(select  rownum as num, b.* from "
+					+ "(select * from reply_board order by regroup desc , relevel asc) b)"
+					+ "where num between ? and ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReplyBoardDto replyBoardDto = new ReplyBoardDto();
@@ -101,11 +107,13 @@ public class ReplyBoardDao {
 		return boardList;
 	}
 	
+	// transaction(오류나도 하나는 작동하면 안됨 --> conn.setAutoCommit(false); & 마지막에 conn.commit();
 	public ReplyBoardDto getSelectOne(int no) {
 		ReplyBoardDto replyBoardDto = new ReplyBoardDto();
 
 		try {
 			getConnection();
+			conn.setAutoCommit(false);
 			
 			String addHitSql = "update reply_board set hit = hit + 1 where no = ?";
 			pstmt = conn.prepareStatement(addHitSql);
@@ -128,19 +136,27 @@ public class ReplyBoardDao {
 				replyBoardDto.setReStep(rs.getInt("restep"));
 				replyBoardDto.setHit(rs.getInt("hit"));
 				replyBoardDto.setContents(rs.getString("contents"));
+				conn.commit();
 			}
 		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 		close();
 		return replyBoardDto;
 	}
 	
+	// transaction(오류나도 하나는 작동하면 안됨 --> conn.setAutoCommit(false); & 마지막에 conn.commit();
 	public int insertReplyBoard(ReplyBoardDto replyBoardDto) {
 		int result = 0;
 		
 		try {
 			getConnection();
+			conn.setAutoCommit(false);
 			int reGroup = replyBoardDto.getReGroup();
 			int reLevel = replyBoardDto.getReLevel();
 			int reStep = replyBoardDto.getReStep();
@@ -162,10 +178,66 @@ public class ReplyBoardDao {
 			pstmt.setInt(7, reStep + 1);
 			pstmt.setString(8, replyBoardDto.getContents());
 			result = pstmt.executeUpdate();
+			conn.commit();
 		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 		close();
 		return result;
+	}
+	
+	// 검색목록(override)
+	// filed는 바인딩 안됨
+	public ArrayList<ReplyBoardDto> getSearchAllList(String searchField, String searchWord) {
+		ArrayList<ReplyBoardDto> boardList = new ArrayList<>();
+		try {
+			getConnection();
+			String sql = "select * from reply_board where "+ searchField + " like ? order by regroup desc, relevel asc";
+			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, searchField);
+			pstmt.setString(1, "%"+searchWord+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReplyBoardDto replyBoardDto = new ReplyBoardDto();
+				replyBoardDto.setNo(rs.getInt("no"));
+				replyBoardDto.setSubject(rs.getString("subject"));
+				replyBoardDto.setName(rs.getString("name"));
+				replyBoardDto.setEmail(rs.getString("email"));
+				replyBoardDto.setPassword(rs.getString("password"));
+				replyBoardDto.setRegDate(rs.getString("regdate"));
+				replyBoardDto.setReGroup(rs.getInt("regroup"));
+				replyBoardDto.setReLevel(rs.getInt("relevel"));
+				replyBoardDto.setReStep(rs.getInt("restep"));
+				replyBoardDto.setHit(rs.getInt("hit"));
+				replyBoardDto.setContents(rs.getString("contents"));
+				boardList.add(replyBoardDto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return boardList;
+	}
+	
+	public int getTotal() {
+		int total = 0;
+		try {
+			getConnection();
+			String sql = "select count(*) as total from reply_board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt("total");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return total;
 	}
 }

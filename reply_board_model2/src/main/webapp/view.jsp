@@ -17,23 +17,23 @@
       				<tbody>
       					<tr>
       						<th>이름</th>
-      						<td>${replyBoardDto.name }</td>
+      						<td class="left">${replyBoardDto.name }</td>
       						<th>HIT</th>
-      						<td>${replyBoardDto.hit }</td>
+      						<td class="left">${replyBoardDto.hit }</td>
       					</tr>
       					<tr>
       						<th>이메일</th>
-      						<td>${replyBoardDto.email }</td>
+      						<td class="left">${replyBoardDto.email }</td>
       						<th>작성일</th>
-      						<td>${replyBoardDto.regDate }</td>
+      						<td class="left">${replyBoardDto.regDate }</td>
       					</tr>
       					<tr>
       						<th>제목</th>
-      						<td colspan="3">${replyBoardDto.subject }</td>
+      						<td colspan="3" class="left">${replyBoardDto.subject }</td>
       					</tr>
       					<tr>
       						<th>내용</th>
-      						<td colspan="3">${replyBoardDto.contents }<br></td>
+      						<td colspan="3" class="left">${replyBoardDto.contents }<br></td>
       					</tr>
       				</tbody>
       			</table>

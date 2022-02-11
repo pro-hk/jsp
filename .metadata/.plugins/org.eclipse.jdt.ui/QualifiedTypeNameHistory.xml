@@ -27,8 +27,6 @@
     <fullyQualifiedTypeName name="java.util.Enumeration"/>
     <fullyQualifiedTypeName name="com.prohk.model.BoardDao"/>
     <fullyQualifiedTypeName name="com.prohk.model.BoardDto"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="javax.websocket.Session"/>
     <fullyQualifiedTypeName name="org.apache.catalina.Session"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
@@ -37,8 +35,10 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="com.prohk.model.ReplyBoardDao"/>
-    <fullyQualifiedTypeName name="com.prohk.model.ReplyBoardDto"/>
     <fullyQualifiedTypeName name="com.prohk.util.ScriptWriter"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.prohk.model.ReplyBoardDto"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

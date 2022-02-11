@@ -34,7 +34,7 @@
       					</tr>
       					<tr>
       						<th>내용 <span class="required">*</span></th>
-      						<td><textarea placeholder="내용을 입력하세요" name="user_contents" id="summernote"></textarea></td>
+      						<td class="left"><textarea placeholder="내용을 입력하세요" name="user_contents" id="summernote"></textarea></td>
       					</tr>
       				</tbody>
       			</table>
