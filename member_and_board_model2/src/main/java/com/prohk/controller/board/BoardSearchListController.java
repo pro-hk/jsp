@@ -1,4 +1,4 @@
-package com.prohk.controller;
+package com.prohk.controller.board;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import com.prohk.model.ReplyBoardDao;
 import com.prohk.model.ReplyBoardDto;
 import com.prohk.util.ScriptWriter;
 
-@WebServlet("/boardSearchList.do")
-public class boardSearchListController extends HttpServlet {
+@WebServlet("/board/BoardSearchList.do")
+public class BoardSearchListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public boardSearchListController() {
+    public BoardSearchListController() {
         super();
     }
 
@@ -35,7 +35,7 @@ public class boardSearchListController extends HttpServlet {
 			ArrayList<ReplyBoardDto> boardList = replyBoardDao.getSearchAllList(search_select, search_word);
 			request.setAttribute("boardList", boardList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("search_list.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/board/search_list.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

@@ -26,6 +26,17 @@ public class ViewController extends HttpServlet {
 		ReplyBoardDto replyBoardDto = replyBoardDao.getSelectOne(no);
 		request.setAttribute("replyBoardDto", replyBoardDto);
 		
+		// 이전글 보기
+		// no는 sequence이기 때문에 글이 연결되지 않는다. rownum을 이용해서 가져오기를 해야된다.
+		int num =  Integer.parseInt(request.getParameter("num"));
+		ReplyBoardDto prevReplyBoardDto = null;
+		prevReplyBoardDto = replyBoardDao.getPrevSelect(num);
+		request.setAttribute("prevReplyBoardDto", prevReplyBoardDto);
+		
+		ReplyBoardDto nextReplyBoardDto = null;
+		nextReplyBoardDto = replyBoardDao.getNextSelect(num);
+		request.setAttribute("nextReplyBoardDto", nextReplyBoardDto);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("view.jsp");
 		dispatcher.forward(request, response);
 	}

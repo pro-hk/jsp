@@ -98,6 +98,7 @@ public class ReplyBoardDao {
 				replyBoardDto.setReStep(rs.getInt("restep"));
 				replyBoardDto.setHit(rs.getInt("hit"));
 				replyBoardDto.setContents(rs.getString("contents"));
+				replyBoardDto.setNum(rs.getInt("num"));
 				boardList.add(replyBoardDto);
 			}
 		} catch (Exception e) {
@@ -222,6 +223,111 @@ public class ReplyBoardDao {
 		}
 		close();
 		return boardList;
+	}
+	
+	public int deleteBoard(ReplyBoardDto replyBoardDto) {
+		int result = 0;
+		try {
+		getConnection();
+		String sql = "Delete from reply_Board where no = ? and password = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyBoardDto.getNo());
+			pstmt.setString(2, replyBoardDto.getPassword());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return result;
+	}
+	
+	public int updateBoard(ReplyBoardDto replyBoardDto) {
+		int result = 0;
+		
+		try {
+		getConnection();
+		String sql = "update reply_board set name = ?, subject = ?, email = ?, contents = ? where no = ? and password = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, replyBoardDto.getName());
+			pstmt.setString(2, replyBoardDto.getSubject());
+			pstmt.setString(3, replyBoardDto.getEmail());
+			pstmt.setString(4, replyBoardDto.getContents());
+			pstmt.setInt(5, replyBoardDto.getNo());
+			pstmt.setString(6, replyBoardDto.getPassword());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return result;
+	}
+	
+	public ReplyBoardDto getPrevSelect(int num) {
+		ReplyBoardDto replyBoardDto = null;
+		
+		try {
+			getConnection();
+			String sql = "select * from "
+					+ "		(select rownum as num, b.* from"
+					+ "        (select * from reply_board order by regroup desc, relevel asc) b"
+					+ "		) where num = ? - 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				replyBoardDto = new ReplyBoardDto();
+				replyBoardDto.setNo(rs.getInt("no"));
+				replyBoardDto.setSubject(rs.getString("subject"));
+				replyBoardDto.setName(rs.getString("name"));
+				replyBoardDto.setEmail(rs.getString("email"));
+				replyBoardDto.setPassword(rs.getString("password"));
+				replyBoardDto.setRegDate(rs.getString("regdate"));
+				replyBoardDto.setReGroup(rs.getInt("regroup"));
+				replyBoardDto.setReLevel(rs.getInt("relevel"));
+				replyBoardDto.setReStep(rs.getInt("restep"));
+				replyBoardDto.setHit(rs.getInt("hit"));
+				replyBoardDto.setContents(rs.getString("contents"));
+				replyBoardDto.setNum(rs.getInt("num"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return replyBoardDto;
+	}
+	
+	public ReplyBoardDto getNextSelect(int num) {
+		ReplyBoardDto replyBoardDto = null;
+		
+		try {
+			getConnection();
+			String sql = "select * from "
+					+ "		(select rownum as num, b.* from"
+					+ "        (select * from reply_board order by regroup desc, relevel asc) b"
+					+ "		) where num = ? + 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				replyBoardDto = new ReplyBoardDto();
+				replyBoardDto.setNo(rs.getInt("no"));
+				replyBoardDto.setSubject(rs.getString("subject"));
+				replyBoardDto.setName(rs.getString("name"));
+				replyBoardDto.setEmail(rs.getString("email"));
+				replyBoardDto.setPassword(rs.getString("password"));
+				replyBoardDto.setRegDate(rs.getString("regdate"));
+				replyBoardDto.setReGroup(rs.getInt("regroup"));
+				replyBoardDto.setReLevel(rs.getInt("relevel"));
+				replyBoardDto.setReStep(rs.getInt("restep"));
+				replyBoardDto.setHit(rs.getInt("hit"));
+				replyBoardDto.setContents(rs.getString("contents"));
+				replyBoardDto.setNum(rs.getInt("num"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close();
+		return replyBoardDto;
 	}
 	
 	public int getTotal() {

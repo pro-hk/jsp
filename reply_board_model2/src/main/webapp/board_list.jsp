@@ -38,7 +38,7 @@
 								<c:if test="${boardDto.reStep > 1 }">
 								<span class="material-icons">subdirectory_arrow_right</span>
 								</c:if>
-								<a href="View.do?no=${boardDto.no }">${boardDto.subject }</a>
+								<a href="View.do?no=${boardDto.no }&num=${boardDto.num }">${boardDto.subject }</a>
 							</td>
 							<td>${boardDto.email }</td>
 							<td>${boardDto.regDate }</td>
@@ -66,7 +66,7 @@
 						</c:if>
 					</ul>
 				</div>
-				<form action="boardSearchList.do" class="form" method="get">
+				<form action="BoardSearchList.do" class="form" method="get">
 					<div class="searchBox">
 						<select name="search_select">
 							<option value="subject" selected>제목</option>

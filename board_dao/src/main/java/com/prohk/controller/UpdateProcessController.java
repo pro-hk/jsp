@@ -32,7 +32,7 @@ public class UpdateProcessController extends HttpServlet {
 		boardDto.setContents(request.getParameter("user_contents"));
 		int result = boardDao.updateBoard(boardDto);
 		if(result > 0) {
-			ScriptWriter.alertAndNext(response, "수정되었습니다.", "List.do");
+			ScriptWriter.alertAndNext(response, "수정되었습니다.", "BoardList.do");
 		} else {
 			ScriptWriter.alertAndBack(response, "비밀번호를 확인하세요.");
 		}

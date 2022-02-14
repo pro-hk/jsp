@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prohk.mybatis.MemberMapper">
+	<!-- 
+	원래는 resultType에 전체 경로를 써야하는데 
+	번거로운 경우, TypeAlias를 통해 경로를 축약 가능
+	-->
+	<select id="getAllMemberList" resultType="MemberDto"> <!-- 원래는 ArrayList.. -->
+		select * from member order by no DESC
+	</select>
+	<select id="getMemberSelectOne" resultType="MemberDto" parameterType="Integer" >
+		select * from member where no = #{no}
+	</select>
+</mapper>

@@ -30,8 +30,8 @@ public class BoardListController extends HttpServlet {
 		int clickPage = Integer.parseInt(tempclickPage);
 		
 		int totalPage = replyBoardDao.getTotal();
-		int listPerPage = 3; // 한 페이지에 보여질 갯수
-		int pageBlock = 2; // pagination에 뿌려질 페이지 갯수   < 1/2 >
+		int listPerPage = 5; // 한 페이지에 보여질 갯수
+		int pageBlock = 10; // pagination에 뿌려질 페이지 갯수   < 1/2 >
 		int lastPage = 0;
 		if(totalPage % listPerPage == 0) {
 			lastPage = totalPage/listPerPage;
