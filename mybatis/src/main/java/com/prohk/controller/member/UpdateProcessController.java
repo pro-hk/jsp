@@ -56,7 +56,7 @@ public class UpdateProcessController extends HttpServlet {
 			if(user_id.equals((String)session.getAttribute("loggedId"))) {
 				session.setAttribute("loggedName", user_name);
 			}
-			ScriptWriter.alertAndNext(response, "회원정보가 변경되었습니다.", "List.do");
+			ScriptWriter.alertAndNext(response, "회원정보가 변경되었습니다.", "../member/List.do");
 		} else {
 			ScriptWriter.alertAndBack(response, "회원정보가 변경되지 않았습니다.");
 		}

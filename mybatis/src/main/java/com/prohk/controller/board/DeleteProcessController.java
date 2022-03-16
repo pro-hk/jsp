@@ -30,7 +30,7 @@ public class DeleteProcessController extends HttpServlet {
 		
 		int result = replyBoardDao.deleteBoard(replyBoardDto);
 		if(result > 0 ) {
-			ScriptWriter.alertAndNext(response, "삭제되었습니다", "BoardList.do");
+			ScriptWriter.alertAndNext(response, "삭제되었습니다", "../board/BoardList.do");
 		} else {
 			ScriptWriter.alertAndBack(response, "글이 삭제되지 않았습니다.");
 		}

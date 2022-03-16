@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prohk.mybatis.board">
+	<select id="getAllBoard" resultType="ReplyBoardDto" parameterType="ReplyBoardDto">
+		select * from reply_board
+	</select>
+	
+	<select id="getSelectOneBoard" resultType="ReplyBoardDto" parameterType="Integer">
+		select * from reply_board where no = #{no}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="ReplyBoardDto">
+		delete from reply_board where no = #{no} and password = #{password}
+	</delete>
+	
+	<delete id="allDeleteBoard" parameterType="Integer">
+		delete from reply_board where no = #{no}
+	</delete>
+	
+	<update id="updateBoard" parameterType="ReplyBoardDto">
+		update reply_board set name = #{name},
+							   subject = #{subject},
+							   email = #{email},
+							   contents = #{contents}
+		where no = #{no} and password = #{password}
+	</update>
+</mapper>

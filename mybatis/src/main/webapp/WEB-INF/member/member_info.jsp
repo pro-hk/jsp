@@ -45,9 +45,9 @@
 					</tbody>
 				</table>
 				<div class="btns">
-					<a href="Update.do?user_id=${memberInfo.id }&user_name=${memberInfo.name }" class="btn btnConfirm">회원정보 수정</a> 
-					<a href="Delete.do?user_id=${memberInfo.id }" class="btn btnCancel">회원탈퇴</a>
-					<a href="List.do" class="btn btnCancel">회원목록</a>
+					<a href="../member/Update.do?user_id=${memberInfo.id }&user_name=${memberInfo.name }" class="btn btnConfirm">회원정보 수정</a> 
+					<a href="../member/Delete.do?user_id=${memberInfo.id }" class="btn btnCancel">회원탈퇴</a>
+					<a href="../member/List.do" class="btn btnCancel">회원목록</a>
 				</div>
 			</div>
 		</div>

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.prohk.model.MemberDao;
 import com.prohk.model.MemberDto;
@@ -20,6 +21,8 @@ public class DeleteProcessController extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 		
@@ -30,7 +33,10 @@ public class DeleteProcessController extends HttpServlet {
 		
 		int result = memberDao.deleteMember(memberDto);
 		if(result > 0) {
-			ScriptWriter.alertAndNext(response, "회원탈퇴되었습니다", "List.do");
+			if(user_id.equals(session.getAttribute("loggedId"))) {
+				session.invalidate();
+			}
+			ScriptWriter.alertAndNext(response, "회원탈퇴되었습니다", "../member/List.do");
 		} else {
 			ScriptWriter.alertAndBack(response, "비밀번호를 확인하세요.");
 		}

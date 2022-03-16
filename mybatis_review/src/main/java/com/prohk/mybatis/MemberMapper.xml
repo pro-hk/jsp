@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prohk.mybatis.member">
+	<select id="getAllMember" resultType="MemberDto" parameterType="MemberDto">
+		select * from member
+	</select>
+	
+	<select id="getSelectOne" resultType="MemberDto" parameterType="String">
+		select * from member where id = #{id}
+	</select>
+	
+	<insert id="insertMember" parameterType="MemberDto">
+		insert into member values (seq_member.nextval, 
+									#{id},
+									#{password},
+									#{name},
+									#{email},
+									#{phone},
+									#{zipCode},
+									#{address},
+									sysdate
+									  )
+	</insert>
+	
+	<select id="idCheck" resultType="Integer" parameterType="String">
+		select count(*) as total from member where id = #{id}
+	</select>
+	
+	<select id="getLoggedMember" resultType="MemberDto" parameterType="MemberDto">
+		select * from member where id = #{id} and password = #{password}
+	</select>
+	
+	<delete id="deleteMember" parameterType="MemberDto">
+		delete from member where id = #{id} and password = #{password}
+	</delete>
+	
+	<update id="updateMember" parameterType="MemberDto">
+		update member set name = #{name},
+						  email = #{email},
+						  phone = #{phone},
+						  zipcode = #{zipCode},
+						  address = #{address}
+		where id = #{id} and password = #{password}
+	</update>
+</mapper>

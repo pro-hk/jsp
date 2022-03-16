@@ -33,7 +33,6 @@ public class LoginProcessController extends HttpServlet {
 		
 		MemberDto loggedMember = memberDao.getLoggedMember(memberDto);
 		if(loggedMember!=null) {
-			// session : jsp ≥ª¿Â∞¥√º
 			session.setAttribute("loggedId", loggedMember.getId());
 			session.setAttribute("loggedName", loggedMember.getName());
 			session.setAttribute("loggedMember", loggedMember); 

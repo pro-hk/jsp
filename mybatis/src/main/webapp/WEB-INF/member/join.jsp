@@ -178,10 +178,10 @@
     			alert("주소를 입력하세요.");
     			$("#address02").focus();
     			return false;
-    		} /* else if(!idCheck){
+    		} else if(!idCheck){
     			alert("아이디를 체크해주세요");
     			return false;
-    		} */
+    		} 
     	});
     	 
     	 $(".btnZipcode").on("click",function(){

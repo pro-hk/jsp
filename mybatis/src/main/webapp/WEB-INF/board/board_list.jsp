@@ -10,7 +10,7 @@
 				<table>
 					<colgroup>
 						<col style="width: 30px">
-						<col style="width: 100px">
+						<col style="width: 150px">
 						<col>
 						<col style="width: 200px">
 						<col style="width: 200px">
@@ -47,27 +47,18 @@
 				</table>
 				<div class="pagination">
 					<ul>
-						<c:if test="${startPage != 1 }">
-							<li><a href="BoardList.do?clickPage=${startPage - pageBlock }"><span class="material-icons"> chevron_left </span></a></li>
-						</c:if>
-						
-						<c:forEach var="page" begin="${startPage }" end="${endPage }">
-							<li class="${clickPage == page ? 'active' : '' }"><a href="BoardList.do?clickPage=${page }">${page }</a></li>
-						</c:forEach>
-						
-						<c:if test="${endPage != lastPage }">
-							<li><a href="BoardList.do?clickPage=${startPage + pageBlock }"><span class="material-icons"> chevron_right </span></a></li>
-						</c:if>
+						${page }
 					</ul>
 				</div>
-				<form action="BoardSearchList.do" class="form" method="get">
+<!-- 			<form action="BoardSearchList.do" class="form" method="get"> -->
+				<form action="BoardList.do" class="form" method="get">
 					<div class="searchBox">
 						<select name="search_select">
-							<option value="subject" selected>제목</option>
-							<option value="name">작성자</option>
-							<option value="contents">내용</option>
+							<option value="subject" ${param.search_select==subject ? "selected" : "" }>제목</option>
+							<option value="name" ${param.search_select==name ? "selected" : "" }>작성자</option>
+							<option value="contents" ${param.search_select==contents ? "selected" : "" }>내용</option>
 						</select> 
-						<input type="text" placeholder="검색할 내용을 입력하세요." name="search_word">
+						<input type="text" placeholder="검색할 내용을 입력하세요." name="search_word" value="${param.search_word }">
 						<button class="btn btnBlack">검색</button>
 					</div>
 				</form>
